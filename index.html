@@ -1276,6 +1276,15 @@ footer {
 /* readability: secondary grey a touch darker so small labels pass WCAG AA contrast */
 :root { --muted-2: #5A6679; }
 
+/* ---------- PERFORMANCE ----------
+   The glass panels sit on a soft gradient, so blurring what's behind them made no visible difference
+   (under 1% pixel change) but was the main cause of lag while scrolling. The blur stays on the sticky
+   top bar only, where text actually scrolls beneath it. The background gradient no longer drifts:
+   the motion was barely visible but kept the whole screen repainting. */
+body *:not(.topbar) { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+body::before { animation: none; }
+.is-off .pixel-hand, .is-off .pixel-fx, .is-off .pixel-z, .is-off .pixel-cat-body, .marquee.is-off .marquee-track { animation-play-state: paused; }
+
 /* ---------- PIXEL SCENE (hero avatar, AI companion, falling pixels) ---------- */
 .hero { position: relative; padding-left: 0; }
 .hero .subtitle + .small-label { margin: -1rem 0 2rem 0; }
@@ -1726,6 +1735,14 @@ footer {
 
 </div>
 
+<script>
+/* pause looping animations while they are off screen */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('is-off',!e.isIntersecting); }); });
+  ['.pixel-scene','.marquee'].forEach(function(s){ var el=document.querySelector(s); if(el) io.observe(el); });
+})();
+</script>
 <script>
 (function(){
   var avatar=document.querySelector('.pixel-avatar'), scene=document.querySelector('.pixel-scene');
