@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>0xdbec · Fractional growth lead for web3 protocols</title>
-<meta name="description" content="Growth, BD and product optimization for web3 protocols. Fractional growth lead; previously brainbot (Raiden, Beamer Bridge), LUKSO and enterprise sales at Zalando.">
+<title>0xdbec · Growth and BD for web3 protocols</title>
+<meta name="description" content="Go-to-market, partnerships and BD for web3 protocols, plus the product optimizations that unblock adoption. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://0xdbec.github.io/">
 <meta name="theme-color" content="#F4F7FF">
@@ -17,23 +17,23 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="0xdbec">
 <meta property="og:url" content="https://0xdbec.github.io/">
-<meta property="og:title" content="0xdbec · Growth, BD and product optimization for web3 protocols">
-<meta property="og:description" content="Growth, BD and product optimization for web3 protocols. Fractional growth lead; previously brainbot (Raiden, Beamer Bridge), LUKSO and enterprise sales at Zalando.">
+<meta property="og:title" content="0xdbec · Growth and BD for web3 protocols">
+<meta property="og:description" content="Go-to-market, partnerships and BD for web3 protocols, plus the product optimizations that unblock adoption. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando.">
 <meta property="og:image" content="https://0xdbec.github.io/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Pixel-art character typing at a laptop with a cat asleep in its bed, beside the headline Growth, BD and product optimization for web3 protocols.">
+<meta property="og:image:alt" content="Pixel-art character typing at a laptop with a cat asleep in its bed, beside the headline Growth and BD for web3 protocols.">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@0xDbec">
 <meta name="twitter:creator" content="@0xDbec">
-<meta name="twitter:title" content="0xdbec · Growth, BD and product optimization for web3 protocols">
-<meta name="twitter:description" content="Growth, BD and product optimization for web3 protocols. Fractional growth lead; previously brainbot (Raiden, Beamer Bridge), LUKSO and enterprise sales at Zalando.">
+<meta name="twitter:title" content="0xdbec · Growth and BD for web3 protocols">
+<meta name="twitter:description" content="Go-to-market, partnerships and BD for web3 protocols, plus the product optimizations that unblock adoption. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando.">
 <meta name="twitter:image" content="https://0xdbec.github.io/og-image.jpg">
-<meta name="twitter:image:alt" content="Pixel-art character typing at a laptop with a cat asleep in its bed, beside the headline Growth, BD and product optimization for web3 protocols.">
+<meta name="twitter:image:alt" content="Pixel-art character typing at a laptop with a cat asleep in its bed, beside the headline Growth and BD for web3 protocols.">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"0xdbec","url":"https://0xdbec.github.io/","description":"Growth, BD and product optimization for web3 protocols. Fractional growth lead; previously brainbot (Raiden, Beamer Bridge), LUKSO and enterprise sales at Zalando."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"0xdbec","url":"https://0xdbec.github.io/","description":"Go-to-market, partnerships and BD for web3 protocols, plus the product optimizations that unblock adoption. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando."}</script>
 
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -359,7 +359,7 @@ h2 .accent {
 
 .marquee-track {
   display: inline-block;
-  animation: marquee 55s linear infinite;
+  animation: marquee 44s linear infinite;
   white-space: nowrap;
   will-change: transform;
 }
@@ -1285,6 +1285,91 @@ body *:not(.topbar) { -webkit-backdrop-filter: none !important; backdrop-filter:
 body::before { animation: none; }
 .is-off .pixel-hand, .is-off .pixel-fx, .is-off .pixel-z, .is-off .pixel-cat-body, .marquee.is-off .marquee-track { animation-play-state: paused; }
 
+/* ---------- 30-SECOND SCAN: languages, career path, case studies dropdown and boxes ---------- */
+.hero-langs { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.45rem; margin: -1rem 0 2rem 0; }
+.hero-langs .small-label { margin: 0 0.35rem 0 0; }
+.lang { font-size: 12.5px; font-weight: 500; color: var(--ink-soft); padding: 3px 10px; border-radius: 999px; background: rgba(255,255,255,0.6); border: 1px solid var(--glass-border); }
+
+.nav-drop { position: relative; }
+.nav-drop-btn { font: inherit; font-size: 13.5px; font-weight: 500; color: var(--muted); background: none; border: 0; padding: 0.2rem 0; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; }
+.nav-drop-btn:hover, .nav-drop-btn[aria-expanded="true"] { color: var(--ink); }
+.nav-drop-btn .caret { font-size: 10px; transition: transform 160ms ease; }
+.nav-drop-btn[aria-expanded="true"] .caret { transform: rotate(180deg); }
+.nav-drop-btn .short { display: none; }
+.nav-menu { position: absolute; right: -1rem; top: calc(100% + 18px); width: 340px; padding: 0.45rem; background: #FFFFFF;
+  border: 1px solid var(--glass-border); border-radius: 16px; box-shadow: 0 16px 40px rgba(15,23,42,0.14); z-index: 60; }
+.nav-menu a { display: grid; grid-template-columns: 2rem 1fr; gap: 0.5rem; align-items: start; margin: 0; padding: 0.6rem 0.65rem; border-radius: 10px; color: var(--ink); text-decoration: none; }
+.nav-menu a::after { display: none; }
+.nav-menu a:hover, .nav-menu a:focus-visible { background: var(--periwinkle-soft); color: var(--ink); }
+.nm-num { font-style: italic; font-weight: 500; color: var(--periwinkle); font-size: 15px; line-height: 1.3; }
+.nm-txt b { display: block; font-weight: 600; font-size: 14px; line-height: 1.3; }
+.nm-txt small { display: block; font-size: 12px; line-height: 1.4; color: var(--muted); margin-top: 0.1rem; }
+.nav-menu a.nm-all { display: block; text-align: center; font-size: 12.5px; font-weight: 600; color: var(--periwinkle-deep); border-top: 1px solid var(--glass-border); border-radius: 0 0 10px 10px; margin-top: 0.3rem; padding: 0.6rem; }
+@media (max-width: 600px) {
+  .nav-drop-btn .full { display: none; }
+  .nav-drop-btn .short { display: inline; }
+  .nav-menu { position: fixed; left: 16px; right: 16px; top: 74px; width: auto; }
+}
+
+.cs { background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--radius); box-shadow: var(--glass-shadow);
+  padding: 1.35rem 1.5rem 1.2rem; margin: 0 0 1rem 0; scroll-margin-top: 6rem; transition: box-shadow 200ms ease, background 200ms ease; }
+.cs:hover { box-shadow: var(--glass-shadow-lift); background: var(--glass-strong); }
+.cs details > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 3.4rem 1fr auto; gap: 1.1rem; align-items: start; }
+.cs details > summary::-webkit-details-marker { display: none; }
+.cs summary:focus-visible { outline: 2px solid var(--periwinkle); outline-offset: 4px; border-radius: 12px; }
+.cs-num { font-style: italic; font-weight: 500; font-size: clamp(34px, 3.6vw, 46px); line-height: 1; color: var(--periwinkle); letter-spacing: -0.025em; font-feature-settings: 'tnum' 1, 'lnum' 1; }
+.cs-co { display: block; font-size: clamp(1.35rem, 2.4vw, 1.7rem); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); }
+.cs-at { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted-2); margin-left: 0.5rem; vertical-align: 0.3em; }
+.cs-title { display: block; margin-top: 0.4rem; font-size: clamp(1rem, 1.5vw, 1.1rem); line-height: 1.45; font-weight: 500; color: var(--ink-soft); }
+.cs-title em { font-style: italic; color: var(--periwinkle); }
+.cs-head .case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 0.8rem; }
+.cs-toggle { width: 34px; height: 34px; display: grid; place-items: center; color: var(--periwinkle); border-radius: 999px; margin-top: 0.1rem; transition: transform 220ms ease, background 200ms ease; }
+.cs summary:hover .cs-toggle { background: var(--periwinkle-soft); }
+.cs details[open] .cs-toggle { transform: rotate(180deg); }
+.cs-detail { margin: 1.1rem 0 0 4.5rem; }
+.cs-detail p { font-size: 15px; line-height: 1.65; color: var(--ink-soft); margin: 0 0 0.8rem 0; }
+.cs-detail .case-tags { margin-top: 0.2rem; }
+.cs .case-proofs { margin: 1rem 0 0 4.5rem; padding-top: 0.9rem; border-top: 1px dashed var(--periwinkle-line); }
+.cs .proofs-label { color: var(--periwinkle-deep); font-weight: 600; }
+.cs .case-proofs a.tag { font-size: 12px; padding: 5px 11px; background: rgba(91,110,255,0.10); border-color: rgba(91,110,255,0.32); color: var(--periwinkle-deep); }
+.cs .case-proofs a.tag:hover { background: var(--periwinkle); border-color: var(--periwinkle); color: #fff; }
+@media (max-width: 600px) {
+  .cs { padding: 1.1rem 1.1rem 1rem; }
+  .cs details > summary { grid-template-columns: 2.2rem 1fr auto; gap: 0.7rem; }
+  .cs-num { font-size: 30px; }
+  .cs-at { display: block; margin: 0.25rem 0 0; vertical-align: 0; }
+  .cs-detail, .cs .case-proofs { margin-left: 0; }
+}
+
+/* ---------- SINCE 2024: collapsed rows ---------- */
+.since-frame details.since-row { display: block; padding: 0; gap: 0; }
+.since-row > summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(200px, 260px) 1fr 34px; gap: 1.85rem; align-items: center; padding: 1.2rem 1.4rem; }
+.since-row > summary::-webkit-details-marker { display: none; }
+.since-row > summary:focus-visible { outline: 2px solid var(--periwinkle); outline-offset: -2px; border-radius: 14px; }
+.since-line { font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
+.since-line strong { font-weight: 600; color: var(--ink); }
+.since-line strong::after { content: " \00B7"; color: var(--periwinkle); font-weight: 600; }
+.since-toggle { width: 34px; height: 34px; display: grid; place-items: center; color: var(--periwinkle); border-radius: 999px; transition: transform 220ms ease, background 200ms ease; }
+.since-row > summary:hover .since-toggle { background: var(--periwinkle-soft); }
+.since-row[open] .since-toggle { transform: rotate(180deg); }
+.since-more { display: grid; grid-template-columns: minmax(200px, 260px) 1fr 34px; gap: 1.85rem; padding: 0 1.4rem 1.35rem; }
+.since-more > div { grid-column: 2; }
+.since-more .since-action { margin-top: 0.8rem; display: flex; justify-content: flex-start; justify-self: start; }
+.since-more .since-action a.tag { font-size: 12px; padding: 5px 11px; background: rgba(91,110,255,0.10); border-color: rgba(91,110,255,0.32); color: var(--periwinkle-deep); }
+.since-more .since-action a.tag:hover { background: var(--periwinkle); border-color: var(--periwinkle); color: #fff; }
+.since-row[open] { background: rgba(255, 255, 255, 0.6); }
+@media (min-width: 601px) and (max-width: 900px) {
+  .since-row > summary, .since-more { grid-template-columns: minmax(160px, 200px) 1fr 34px; gap: 1.4rem; padding-left: 1.2rem; padding-right: 1.2rem; }
+}
+@media (max-width: 600px) {
+  .since-row > summary { grid-template-columns: 1fr 34px; gap: 0.3rem 0.75rem; padding: 1.1rem 1rem; }
+  .since-row > summary .since-name { grid-column: 1; }
+  .since-row > summary .since-line { grid-column: 1; grid-row: 2; font-size: 14px; }
+  .since-row > summary .since-toggle { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  .since-more { grid-template-columns: 1fr; gap: 0; padding: 0 1rem 1.15rem; }
+  .since-more > div { grid-column: 1; }
+}
+
 /* ---------- PIXEL SCENE (hero avatar, AI companion, falling pixels) ---------- */
 .hero { position: relative; padding-left: 0; }
 .hero .subtitle + .small-label { margin: -1rem 0 2rem 0; }
@@ -1340,7 +1425,16 @@ body::before { animation: none; }
     <a href="https://x.com/0xDbec" target="_blank" rel="noopener" class="wordmark">0x<span class="pw">dbec</span></a>
     <nav>
       <a href="#track">track record</a>
-      <a href="#work">work</a>
+      <div class="nav-drop">
+        <button type="button" class="nav-drop-btn" aria-expanded="false" aria-controls="cases-menu"><span class="full">case studies</span><span class="short">cases</span><span class="caret" aria-hidden="true">&#9662;</span></button>
+        <div class="nav-menu" id="cases-menu" hidden>
+          <a href="#case-beamer"><span class="nm-num">01</span><span class="nm-txt"><b>Beamer Bridge</b><small>Growth team, L2 partnerships, GTM for every chain launch</small></span></a>
+          <a href="#case-decentra"><span class="nm-num">02</span><span class="nm-txt"><b>Decentra</b><small>AI-agent marketing, value proposition, B2B pipeline</small></span></a>
+          <a href="#case-raiden"><span class="nm-num">03</span><span class="nm-txt"><b>Raiden Network</b><small>Product improvements to unblock adoption</small></span></a>
+          <a href="#case-lukso"><span class="nm-num">04</span><span class="nm-txt"><b>LUKSO</b><small>Growth function from zero, marketing and BD</small></span></a>
+          <a href="#work" class="nm-all">All case studies</a>
+        </div>
+      </div>
       <a href="#contact">contact</a>
     </nav>
   </div>
@@ -1349,9 +1443,9 @@ body::before { animation: none; }
 <div class="container fade-in" id="top">
 
   <section class="hero fade-up">
-    <h1>Growth, BD and product optimization for <span class="accent">web3&nbsp;protocols.</span></h1>
-    <p class="subtitle">Fractional growth lead for protocol teams since May 2024. Previously brainbot (Raiden Network, Beamer Bridge) and LUKSO. Started in enterprise sales at Zalando.</p>
-    <span class="small-label">Based in Portugal &middot; Languages: English, French, German</span>
+    <h1>Growth and BD <span class="accent">for web3&nbsp;protocols.</span></h1>
+    <p class="subtitle">Go-to-market, partnerships and BD, plus the product optimizations that unblock adoption. Previously brainbot (Raiden Network, Beamer Bridge) and LUKSO. Started in enterprise sales at Zalando.</p>
+    <div class="hero-langs"><span class="small-label">Languages</span><span class="lang">English</span><span class="lang">French</span><span class="lang">German</span><span class="lang">Luxembourgish</span></div>
     <div class="cta">
       <a class="btn primary" href="mailto:dinab.web3@gmail.com?subject=Inquiry%20via%200xdbec.github.io">Get in touch</a>
       <a class="btn secondary" href="https://calendly.com/dinabecane/30min" target="_blank" rel="noopener">Book a 30-min call</a>
@@ -1502,7 +1596,7 @@ body::before { animation: none; }
 
     <article class="engagement fade-up">
       <p class="engagement-name"><a href="https://www.liqd.com/" target="_blank" rel="noopener">LIQD</a></p>
-      <p class="engagement-role">Embedded growth lead, joined in stealth pre-launch as an early team member</p>
+      <p class="engagement-role">Growth lead, joined in stealth pre-launch as an early team member</p>
       <div class="engagement-tags">
         <span class="tag">Pre-launch</span>
         <span class="tag">Full-funnel GTM</span>
@@ -1523,105 +1617,101 @@ body::before { animation: none; }
   <section class="fade-up" id="work" aria-labelledby="work-h">
     <h2 id="work-h">Four case studies, <span class="accent">in more depth</span></h2>
 
-    <article class="case fade-up">
-      <aside class="case-aside">
-        <span class="case-number">01</span>
-        <div class="case-tags">
-          <span class="tag">GTM</span>
-          <span class="tag">Ecosystem</span>
-          <span class="tag">Partnerships</span>
-          <span class="tag">Activation</span>
-        </div>
-      </aside>
-      <div class="case-body">
-        <h3 class="case-title">brainbot's cross-chain Beamer Bridge, <em>from early product to scaled GTM.</em></h3>
-        <div class="case-prose">
+    <article class="cs fade-up" id="case-beamer">
+      <details>
+        <summary>
+          <span class="cs-num">01</span>
+          <span class="cs-head">
+            <span class="cs-co">Beamer Bridge <span class="cs-at">brainbot</span></span>
+            <span class="cs-title">Built the growth team and L2 partnerships <em>for a cross-chain bridge.</em></span>
+            <span class="case-tags"><span class="tag">GTM</span> <span class="tag">Ecosystem</span> <span class="tag">Partnerships</span> <span class="tag">Activation</span></span>
+          </span>
+          <span class="cs-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="cs-detail">
           <p>L2-to-L2 liquidity bridge on a request-and-fulfillment model.</p>
           <p>Built and led a 5-person growth team and owned GTM for every chain launch with major rollups. Market analysis and positioning with the founders. L2 partnerships and co-marketing, incl. joint X Spaces, with Arbitrum, Optimism, LI.FI, Boba, Polygon zkEVM and Gelato. Moved LP onboarding from high- to low-touch, cutting activation cost, tracked through funnel analytics and BI dashboards.</p>
         </div>
-        <div class="case-proofs">
-          <span class="proofs-label">Proof of work</span>
-          <a class="tag" href="https://x.com/arbitrum/status/1616442133744963585" target="_blank" rel="noopener">Arbitrum co-marketing</a>
-          <a class="tag" href="https://x.com/ZKBaseOfficial/status/1651130462939811841" target="_blank" rel="noopener">ZKBase co-marketing</a>
-          <a class="tag" href="https://x.com/BeamerBridge/status/1676956004129599488" target="_blank" rel="noopener">Campaign launch</a>
-          <a class="tag" href="https://app.galxe.com/quest/beamerbridge?sort=Trending" target="_blank" rel="noopener">Galxe quest</a>
-          <a class="tag" href="https://x.com/0xDbec/status/1674703981656801281" target="_blank" rel="noopener">X Space, 1K+ listeners</a>
-          <a class="tag" href="https://x.com/_brainbot/status/1686331942852268032" target="_blank" rel="noopener">Team reference</a>
-        </div>
+      </details>
+      <div class="case-proofs">
+        <span class="proofs-label">Proof of work</span>
+        <a class="tag" href="https://x.com/arbitrum/status/1616442133744963585" target="_blank" rel="noopener">Arbitrum co-marketing</a>
+        <a class="tag" href="https://x.com/ZKBaseOfficial/status/1651130462939811841" target="_blank" rel="noopener">ZKBase co-marketing</a>
+        <a class="tag" href="https://x.com/BeamerBridge/status/1676956004129599488" target="_blank" rel="noopener">Campaign launch</a>
+        <a class="tag" href="https://app.galxe.com/quest/beamerbridge?sort=Trending" target="_blank" rel="noopener">Galxe quest</a>
+        <a class="tag" href="https://x.com/0xDbec/status/1674703981656801281" target="_blank" rel="noopener">X Space, 1K+ listeners</a>
+        <a class="tag" href="https://x.com/_brainbot/status/1686331942852268032" target="_blank" rel="noopener">Team reference</a>
       </div>
     </article>
 
-    <article class="case fade-up">
-      <aside class="case-aside">
-        <span class="case-number">02</span>
-        <div class="case-tags">
-          <span class="tag">Agent orchestration</span>
-          <span class="tag">Value proposition</span>
-          <span class="tag">B2B pipeline</span>
-          <span class="tag">Outreach</span>
-        </div>
-      </aside>
-      <div class="case-body">
-        <h3 class="case-title">Fractional Head of Growth at Decentra, <em>from value proposition to pipeline.</em></h3>
-        <div class="case-prose">
+    <article class="cs fade-up" id="case-decentra">
+      <details>
+        <summary>
+          <span class="cs-num">02</span>
+          <span class="cs-head">
+            <span class="cs-co">Decentra</span>
+            <span class="cs-title">Ran marketing with AI agents and built the B2B pipeline <em>for a web3 and AI dev studio.</em></span>
+            <span class="case-tags"><span class="tag">Agent orchestration</span> <span class="tag">Value proposition</span> <span class="tag">B2B pipeline</span> <span class="tag">Outreach</span></span>
+          </span>
+          <span class="cs-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="cs-detail">
           <p>Web3 and AI development studio: senior engineers and auditors for protocol, DeFi and dApp teams.</p>
           <p>Marketing came first: built and ran an AI agent swarm as the marketing team, designing its workflows, curated agent memory and rubric-based self-evals, with run reports for fast human-in-the-loop review. Reframed the value proposition around security, audits, AI and automation, and brought it to the website with the designer. Also handled ecosystem partnerships. Then built the B2B pipeline, doing outreach by hand while training the agents to take it over.</p>
         </div>
-        <div class="case-proofs">
-          <span class="proofs-label">Proof of work</span>
-          <a class="tag" href="https://www.de-centra.com/" target="_blank" rel="noopener">Visit</a>
-        </div>
+      </details>
+      <div class="case-proofs">
+        <span class="proofs-label">Proof of work</span>
+        <a class="tag" href="https://www.de-centra.com/" target="_blank" rel="noopener">Website</a>
       </div>
     </article>
 
-    <article class="case fade-up">
-      <aside class="case-aside">
-        <span class="case-number">03</span>
-        <div class="case-tags">
-          <span class="tag">Onboarding</span>
-          <span class="tag">UX/UI testing</span>
-          <span class="tag">Product activation</span>
-          <span class="tag">DevRel</span>
-        </div>
-      </aside>
-      <div class="case-body">
-        <h3 class="case-title">Raiden Network's product needed fixing <em>before developers could adopt it.</em></h3>
-        <div class="case-prose">
+    <article class="cs fade-up" id="case-raiden">
+      <details>
+        <summary>
+          <span class="cs-num">03</span>
+          <span class="cs-head">
+            <span class="cs-co">Raiden Network <span class="cs-at">brainbot</span></span>
+            <span class="cs-title">Improved the product to unblock adoption <em>of an L2 P2P payments network.</em></span>
+            <span class="case-tags"><span class="tag">Onboarding</span> <span class="tag">UX/UI testing</span> <span class="tag">Product activation</span> <span class="tag">DevRel</span></span>
+          </span>
+          <span class="cs-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="cs-detail">
           <p>Off-chain payment channel network on Ethereum, the equivalent of Bitcoin's Lightning Network.</p>
           <p>Ran a targeted beta testing program at EthCC to surface developer activation friction. Coordinated the developer onboarding redesign across Engineering, Support and BI, backed by proactive support SLAs and internal documentation. Developer support and docs: RPC and SDK setup guides, node deployment tutorials and hands-on help.</p>
         </div>
-        <div class="case-proofs">
-          <span class="proofs-label">Proof of work</span>
-          <a class="tag" href="https://www.youtube.com/watch?v=zOXFRRzeSf4&t=61s" target="_blank" rel="noopener">Tutorial</a>
-          <a class="tag" href="https://medium.com/raiden-network/the-raiden-network-now-live-on-arbitrum-3d57fedf7961" target="_blank" rel="noopener">Arbitrum launch</a>
-          <a class="tag" href="https://medium.com/raiden-network/announcing-the-raiden-light-client-ashvini-release-60d2a66b0d4" target="_blank" rel="noopener">Light Client release</a>
-          <a class="tag" href="https://x.com/arbitrum/status/1521524210186784770" target="_blank" rel="noopener">Arbitrum co-marketing</a>
-          <a class="tag" href="https://x.com/raiden_network/status/1623330836123901952" target="_blank" rel="noopener">Raiden AMA</a>
-          <a class="tag" href="https://blockchainwelt.de/raiden-network/" target="_blank" rel="noopener">Press feature</a>
-        </div>
+      </details>
+      <div class="case-proofs">
+        <span class="proofs-label">Proof of work</span>
+        <a class="tag" href="https://www.youtube.com/watch?v=zOXFRRzeSf4&t=61s" target="_blank" rel="noopener">Tutorial</a>
+        <a class="tag" href="https://medium.com/raiden-network/the-raiden-network-now-live-on-arbitrum-3d57fedf7961" target="_blank" rel="noopener">Arbitrum launch</a>
+        <a class="tag" href="https://medium.com/raiden-network/announcing-the-raiden-light-client-ashvini-release-60d2a66b0d4" target="_blank" rel="noopener">Light Client release</a>
+        <a class="tag" href="https://x.com/arbitrum/status/1521524210186784770" target="_blank" rel="noopener">Arbitrum co-marketing</a>
+        <a class="tag" href="https://x.com/raiden_network/status/1623330836123901952" target="_blank" rel="noopener">Raiden AMA</a>
+        <a class="tag" href="https://blockchainwelt.de/raiden-network/" target="_blank" rel="noopener">Press feature</a>
       </div>
     </article>
 
-    <article class="case fade-up">
-      <aside class="case-aside">
-        <span class="case-number">04</span>
-        <div class="case-tags">
-          <span class="tag">EVM L1</span>
-          <span class="tag">BD</span>
-          <span class="tag">Team scaling</span>
-          <span class="tag">Marketing</span>
-        </div>
-      </aside>
-      <div class="case-body">
-        <h3 class="case-title">LUKSO, for brands and digital identity, <em>in its formative phase.</em></h3>
-        <div class="case-prose">
+    <article class="cs fade-up" id="case-lukso">
+      <details>
+        <summary>
+          <span class="cs-num">04</span>
+          <span class="cs-head">
+            <span class="cs-co">LUKSO</span>
+            <span class="cs-title">Built marketing, BD and a 5-person growth team <em>from zero for a new L1.</em></span>
+            <span class="case-tags"><span class="tag">EVM L1</span> <span class="tag">BD</span> <span class="tag">Team scaling</span> <span class="tag">Marketing</span></span>
+          </span>
+          <span class="cs-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="cs-detail">
           <p>EVM L1 first built for brands and digital identity, now a chain for creators and culture.</p>
           <p>Built the growth function from zero, hiring and leading a 5-person team. Owned marketing and BD in the formative phase: refined the value proposition and supported the founder on partnerships with fashion houses and web3 protocols, incl. LUKSO's first live use case at Helsinki Fashion Week. Ran the community and set up and streamlined the internal support processes for faster resolution, with KPI tracking in Google Analytics and related tools.</p>
         </div>
-        <div class="case-proofs">
-          <span class="proofs-label">Proof of work</span>
-          <a class="tag" href="https://medium.com/lukso/helsinki-fashion-week-2020-luksos-first-practical-use-case-8133ab6d599e" target="_blank" rel="noopener">Helsinki Fashion Week</a>
-        </div>
+      </details>
+      <div class="case-proofs">
+        <span class="proofs-label">Proof of work</span>
+        <a class="tag" href="https://medium.com/lukso/helsinki-fashion-week-2020-luksos-first-practical-use-case-8133ab6d599e" target="_blank" rel="noopener">Helsinki Fashion Week</a>
       </div>
     </article>
 
@@ -1632,35 +1722,60 @@ body::before { animation: none; }
 
     <div class="since-frame">
 
-      <article class="since-row fade-up">
-        <h3 class="since-name">Mined<em>.fi</em></h3>
-        <p class="since-text"><strong>Interim CGO.</strong> Liquid mining on Alephium, with token locking and stTokens representing hash power. Led growth strategy, built the investor materials, validated demand at conferences, and represented Mined.fi at a Funding the Commons roundtable.</p>
-        <div class="since-action">
-          <a class="tag" href="https://x.com/mined_fi/status/1859667531734364208" target="_blank" rel="noopener">Roundtable</a>
+      <details class="since-row fade-up">
+        <summary>
+          <h3 class="since-name">Mined<em>.fi</em></h3>
+          <span class="since-line"><strong>Interim CGO</strong> <span>growth strategy for liquid mining on Alephium</span></span>
+          <span class="since-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="since-more">
+          <div>
+            <p class="since-text">Liquid mining on Alephium, with token locking and stTokens representing hash power. Led growth strategy, built the investor materials, validated demand at conferences, and represented Mined.fi at a Funding the Commons roundtable.</p>
+            <div class="since-action"><a class="tag" href="https://x.com/mined_fi/status/1859667531734364208" target="_blank" rel="noopener">Roundtable</a></div>
+          </div>
         </div>
-      </article>
+      </details>
 
-      <article class="since-row fade-up">
-        <h3 class="since-name">Shutter <em>Network</em></h3>
-        <p class="since-text"><strong>DAO bootstrapping and onboarding.</strong> Supported growth for Shutter's MEV protection (encrypted mempool). Coordinated partnerships with DEXs and L2s, and designed a points-based onboarding program submitted to governance.</p>
-        <div class="since-action">
-          <a class="tag" href="https://shutternetwork.discourse.group/t/feedback-request-for-a-shutter-onboarding-program/181" target="_blank" rel="noopener">Proposal</a>
+      <details class="since-row fade-up">
+        <summary>
+          <h3 class="since-name">Shutter <em>Network</em></h3>
+          <span class="since-line"><strong>DAO bootstrapping</strong> <span>partnerships and a points-based onboarding program</span></span>
+          <span class="since-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="since-more">
+          <div>
+            <p class="since-text">Supported growth for Shutter's MEV protection (encrypted mempool). Coordinated partnerships with DEXs and L2s, and designed a points-based onboarding program submitted to governance.</p>
+            <div class="since-action"><a class="tag" href="https://shutternetwork.discourse.group/t/feedback-request-for-a-shutter-onboarding-program/181" target="_blank" rel="noopener">Proposal</a></div>
+          </div>
         </div>
-      </article>
+      </details>
 
-      <article class="since-row fade-up">
-        <h3 class="since-name">Quant<em>Pilot</em></h3>
-        <p class="since-text"><strong>Positioning, branding, tokenomics.</strong> Positioned QuantPilot as an intelligence layer for AI agent systems and professional traders, plus brand work and tokenomics input. Attracted investor leads at PoC stage.</p>
-        <div class="since-action">
-          <a class="tag" href="https://quantpilot.com/" target="_blank" rel="noopener">Visit</a>
+      <details class="since-row fade-up">
+        <summary>
+          <h3 class="since-name">Quant<em>Pilot</em></h3>
+          <span class="since-line"><strong>Positioning and branding</strong> <span>plus tokenomics input at PoC stage</span></span>
+          <span class="since-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="since-more">
+          <div>
+            <p class="since-text">Positioned QuantPilot as an intelligence layer for AI agent systems and professional traders, plus brand work and tokenomics input. Attracted investor leads at PoC stage.</p>
+            <div class="since-action"><a class="tag" href="https://quantpilot.com/" target="_blank" rel="noopener">Visit</a></div>
+          </div>
         </div>
-      </article>
+      </details>
 
-      <article class="since-row fade-up">
-        <h3 class="since-name">Cometh, Trustblock, <em>Gaia</em></h3>
-        <p class="since-text"><strong>Shorter engagements.</strong> Cometh and Trustblock: GTM, positioning, partnerships and product feedback. Gaia: represented the project at conferences and ran outreach there.</p>
-        <div class="since-action"></div>
-      </article>
+      <details class="since-row fade-up">
+        <summary>
+          <h3 class="since-name">Cometh, Trustblock, <em>Gaia</em></h3>
+          <span class="since-line"><strong>Shorter engagements</strong> <span>GTM, partnerships and conference outreach</span></span>
+          <span class="since-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </summary>
+        <div class="since-more">
+          <div>
+            <p class="since-text">Cometh and Trustblock: GTM, positioning, partnerships and product feedback. Gaia: represented the project at conferences and ran outreach there.</p>
+          </div>
+        </div>
+      </details>
 
     </div>
   </section>
@@ -1735,6 +1850,23 @@ body::before { animation: none; }
 
 </div>
 
+<script>
+/* case studies dropdown in the top bar */
+(function(){
+  var btn=document.querySelector('.nav-drop-btn'), menu=document.getElementById('cases-menu');
+  if(!btn||!menu) return;
+  function close(){ menu.hidden=true; btn.setAttribute('aria-expanded','false'); }
+  btn.addEventListener('click',function(e){ e.stopPropagation(); var open=menu.hidden; menu.hidden=!open; btn.setAttribute('aria-expanded',String(open)); });
+  document.addEventListener('click',function(e){ if(!menu.hidden && !menu.contains(e.target)) close(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  function openCase(id){ var el=document.getElementById(id); if(!el) return null; var d=el.querySelector('details'); if(d) d.open=true; return el; }
+  menu.addEventListener('click',function(e){
+    var a=e.target.closest('a'); if(!a) return; var id=a.getAttribute('href').slice(1); close();
+    if(id.indexOf('case-')===0){ e.preventDefault(); var el=openCase(id); if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); if(history.replaceState) history.replaceState(null,'','#'+id); } }
+  });
+  if(location.hash.indexOf('#case-')===0) openCase(location.hash.slice(1));
+})();
+</script>
 <script>
 /* pause looping animations while they are off screen */
 (function(){
@@ -1853,6 +1985,7 @@ body::before { animation: none; }
   var rt, lastW=window.innerWidth; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ if(window.innerWidth!==lastW){ lastW=window.innerWidth; reset(); } else if(!calm.matches){ measure(); } },150); });
   if(calm.addEventListener) calm.addEventListener('change',reset);
   window.addEventListener('load',reset);
+  document.addEventListener('toggle',function(){ setTimeout(reset,30); },true);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(reset);
   reset();
 })();
