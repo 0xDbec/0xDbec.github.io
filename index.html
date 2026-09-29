@@ -1302,7 +1302,7 @@ footer {
   50%  { opacity: 0; transform: translateY(-1px); }
   100% { opacity: 0; }
 }
-.pixel-trail { position: fixed; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 40; }
+.pixel-trail { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 40; }
 .pixel-trail span { position: absolute; left: 0; top: 0; width: 8px; height: 8px; opacity: 0; will-change: transform, opacity; }
 .pixel-trail span::after { content: ""; position: absolute; inset: 0; background: var(--c); }
 .pixel-trail.is-done span::after { animation: pixelhop 0.6s ease-out both; animation-delay: inherit; }
@@ -1728,84 +1728,116 @@ footer {
 
 <script>
 (function(){
-  var avatar=document.querySelector('.pixel-avatar');
-  if(!avatar||!window.matchMedia||!window.requestAnimationFrame) return;
+  var avatar=document.querySelector('.pixel-avatar'), scene=document.querySelector('.pixel-scene');
+  if(!avatar||!scene||!window.matchMedia||!document.body.animate) return;
   var calm=window.matchMedia('(prefers-reduced-motion: reduce)');
   var COLS=27, LAPX=21, LAPY=14;   /* scene width in pixels, laptop screen position */
-  /* where the pixels land, top to bottom: [selector, where along the top edge (0 left, 1 right)] */
+  /* where the pixels rest, top to bottom: [selector, where along the top edge (0 left, 1 right)] */
   var STOPS=[['.marquee',0.8],['#what .cards',0.84],['.track-grid',0.72],['#active .engagement',0.88],['.since-frame',0.8],['.speaking-frame',0.64],['footer',0.7]]
     .map(function(s){ return {el:document.querySelector(s[0]), f:s[1]}; }).filter(function(s){ return s.el; });
+  var LAST=STOPS.length-1;
   var COLORS=['#5B6EFF','#F6CF5C','#4F46E5','#CBD5E1','#5B6EFF','#F4A7B9','#4F46E5'], N=COLORS.length;
   var layer=document.createElement('div'); layer.className='pixel-trail'; layer.setAttribute('aria-hidden','true'); document.body.appendChild(layer);
   var dots=COLORS.map(function(c,i){ var d=document.createElement('span'); d.style.setProperty('--c',c); d.style.animationDelay=(i*70)+'ms'; layer.appendChild(d); return d; });
   function rnd(i,k,s){ var x=Math.sin(i*127.1+k*311.7+s*74.7)*43758.5453; return x-Math.floor(x); }
-  function clamp(v){ return v<0?0:(v>1?1:v); }
   function smooth(t){ return t*t*(3-2*t); }
-  /* per stop: a different, random-looking pile (a few stacked), fall path, spin and roll for each pixel */
+  /* page position of an element, ignoring CSS transforms (so fade-in effects don't shift the landing spots) */
+  function page(el){ var x=0,y=0; while(el){ x+=el.offsetLeft; y+=el.offsetTop; el=el.offsetParent; } return {x:x,y:y}; }
+  /* per stop: a different pile (two stacked), fall path, spin and roll for each pixel */
   var PLAN=STOPS.map(function(stop,k){
-    var last=k===STOPS.length-1, slots=[-4,-3,-2,-1,0,1,2,3,4];
+    var last=k===LAST, slots=[-4,-3,-2,-1,0,1,2,3,4];
     for(var a=slots.length-1;a>0;a--){ var b=Math.floor(rnd(a,k,1)*(a+1)); var t=slots[a]; slots[a]=slots[b]; slots[b]=t; }
     var p=[];
     for(var i=0;i<N;i++){
-      var q={slot:last?(i*1.6-(N-1)*0.8):slots[i], lvl:0, jit:(rnd(i,k,9)-0.5)*0.3};
-      q.delay=rnd(i,k,2)*0.3; q.fall=0.55+rnd(i,k,3)*0.2;
-      q.hop=k===0?5+rnd(i,k,4)*4:(rnd(i,k,4)<0.35?0:1+rnd(i,k,4)*3);
-      q.sway=(rnd(i,k,5)-0.5)*5;
-      q.spin=[0,0,90,-90,180,-180,270][Math.floor(rnd(i,k,6)*7)];
-      q.roll=last?0:[0,0,1,-1,2,-2,3][Math.floor(rnd(i,k,7)*7)];
-      q.bounce=0.3+rnd(i,k,8)*0.7;
-      p.push(q);
+      p.push({slot:last?(i*1.6-(N-1)*0.8):slots[i], lvl:0, jit:(rnd(i,k,9)-0.5)*0.3,
+        delay:rnd(i,k,2)*260, dur:950+rnd(i,k,3)*450, fall:0.62+rnd(i,k,3)*0.12,
+        hop:k===0?5+rnd(i,k,4)*4:(rnd(i,k,4)<0.35?0.5:1+rnd(i,k,4)*3), sway:(rnd(i,k,5)-0.5)*5,
+        spin:[0,0,90,-90,180,-180,270][Math.floor(rnd(i,k,6)*7)],
+        roll:last?0:[0,0,1,-1,2,-2,3][Math.floor(rnd(i,k,7)*7)], bounce:0.3+rnd(i,k,8)*0.7});
     }
     if(!last){ for(var j=0;j<2;j++){ var top=5+j, base=Math.floor(rnd(j,k,10)*5); p[top].slot=p[base].slot; p[top].lvl=1; p[top].roll=0; p[base].roll=0; } }
     return p;
   });
-  function spot(k,i,r,cell){
-    var q=PLAN[k][i];
-    return {x:r.left+r.width*STOPS[k].f+(q.slot+q.jit*(q.lvl?0:1))*cell*1.15-cell/2, y:r.top-cell*(q.lvl+1)};
-  }
-  var queued=false, done=false, settle;
-  function draw(){
-    queued=false;
-    if(calm.matches){ layer.style.display='none'; return; }
-    layer.style.display='';
-    var vh=window.innerHeight, sy=window.scrollY, maxS=Math.max(1,document.documentElement.scrollHeight-vh);
-    var a=avatar.getBoundingClientRect(), cell=Math.max(4,Math.round(a.width/COLS));
-    var rects=STOPS.map(function(s){ return s.el.getBoundingClientRect(); });
-    var prog=rects.map(function(r,k){
-      if(k===0) return clamp(sy/320);
-      var endTop=r.top-(maxS-sy), endL=Math.max(vh*0.5,endTop+1), startL=Math.max(Math.min(vh*0.95,endL+vh*0.35),endL+120);
-      return clamp((startL-r.top)/(startL-endL));
+  var cell=8, spots=[], home=[], thresholds=[];
+  function measure(){
+    var sr=scene.getBoundingClientRect(), ar=avatar.getBoundingClientRect(), sp=page(scene);
+    cell=Math.max(4,Math.round(ar.width/COLS));
+    var ax=sp.x+(ar.left-sr.left), ay=sp.y+(ar.top-sr.top);
+    home=dots.map(function(d,i){ return {x:ax+(LAPX+i%5)*cell, y:ay+(LAPY+i%6)*cell}; });
+    var vh=window.innerHeight, maxS=Math.max(0,document.documentElement.scrollHeight-vh);
+    spots=STOPS.map(function(stop,k){
+      var el=stop.el, pos=page(el), w=el.offsetWidth;
+      return PLAN[k].map(function(q){ return {x:pos.x+w*stop.f+(q.slot+(q.lvl?0:q.jit))*cell*1.15-cell/2, y:pos.y-cell*(q.lvl+1)}; });
     });
-    var k=0; for(var j=0;j<prog.length;j++){ if(prog[j]>0) k=j; }
-    var T=prog[k], first=k===0;
+    /* a stop is reached once its top edge passes 70% down the screen (the footer: when the page bottom is reached) */
+    thresholds=STOPS.map(function(stop,k){ return k===0?24:Math.min(page(stop.el).y-vh*0.7, maxS-8); });
+    dots.forEach(function(d){ d.style.width=d.style.height=cell+'px'; });
+  }
+  function T(x,y,r){ return 'translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,0) rotate('+r.toFixed(1)+'deg)'; }
+  function where(k,i){ return k<0?home[i]:spots[k][i]; }
+  var cur=-1, anims=[];
+  function place(k){                                   /* snap without animation (load, resize) */
+    anims.forEach(function(a){ a&&a.cancel(); }); anims=[];
+    dots.forEach(function(d,i){ var p=where(k,i); d.style.transform=T(p.x,p.y,0); d.style.opacity=k<0?0:1; });
+    layer.classList.toggle('is-done',k===LAST);
+  }
+  function current(d,i){                               /* where a pixel is right now, even mid-flight */
+    var m=new DOMMatrix(getComputedStyle(d).transform);
+    return {x:m.m41, y:m.m42, r:Math.atan2(m.b,m.a)*180/Math.PI, o:+getComputedStyle(d).opacity};
+  }
+  function go(k){
+    var from=cur; cur=k; layer.classList.remove('is-done');
+    var starts=dots.map(current);
+    anims.forEach(function(a){ a&&a.cancel(); }); anims=[];
+    var up=k<from, finished=0;
     dots.forEach(function(d,i){
-      var q=PLAN[k][i], to=spot(k,i,rects[k],cell);
-      var from=first?{x:a.left+(LAPX+i%5)*cell, y:a.top+(LAPY+i%6)*cell}:spot(k-1,i,rects[k-1],cell);
-      var t=clamp((T-q.delay)/0.7), landX=to.x-q.roll*cell, x, y, rot;
-      if(t<q.fall){                                   /* hop off, sway, fall with gravity, tumble */
-        var u=t/q.fall;
-        x=from.x+(landX-from.x)*smooth(u)+Math.sin(Math.PI*u)*q.sway*cell;
-        y=from.y+(to.y-from.y)*u*u-Math.sin(Math.PI*Math.min(u*1.7,1))*q.hop*cell;
-        rot=q.spin*smooth(u);
-      } else {                                        /* land, bounce, maybe roll a few turns */
-        var v=(t-q.fall)/(1-q.fall), ang=q.roll*90*smooth(v);
-        var lift=cell*0.5*(Math.abs(Math.sin(ang*Math.PI/180))+Math.abs(Math.cos(ang*Math.PI/180)))-cell*0.5;
-        x=landX+q.roll*cell*smooth(v);
-        y=to.y-Math.abs(Math.sin(Math.PI*v*2))*(1-v)*cell*q.bounce-lift;
-        rot=q.spin+ang;
+      var q=PLAN[Math.max(k,0)][i], s=starts[i], to=where(k,i);
+      var roll=(k<0||up)?0:q.roll, landX=to.x-roll*cell, frames=[], n=18;
+      for(var f=0;f<=n;f++){
+        var t=f/n, x, y, rot, o=1;
+        if(t<q.fall){
+          var u=t/q.fall;
+          x=s.x+(landX-s.x)*smooth(u)+Math.sin(Math.PI*u)*q.sway*cell*(up?0.3:1);
+          y=up? s.y+(to.y-s.y)*smooth(u)-Math.sin(Math.PI*u)*cell*3
+              : s.y+(to.y-s.y)*u*u-Math.sin(Math.PI*Math.min(u*1.7,1))*q.hop*cell;
+          rot=s.r+(q.spin)*smooth(u);
+        } else {
+          var v=(t-q.fall)/(1-q.fall), ang=roll*90*smooth(v), a=ang*Math.PI/180;
+          var lift=cell*0.5*(Math.abs(Math.sin(a))+Math.abs(Math.cos(a)))-cell*0.5;
+          x=landX+roll*cell*smooth(v);
+          y=to.y-Math.abs(Math.sin(Math.PI*v*2))*(1-v)*cell*q.bounce*(up?0.4:1)-lift;
+          rot=s.r+q.spin+ang;
+        }
+        if(k<0) o=t<0.8?1:1-(t-0.8)/0.2;                /* back into the laptop */
+        else if(s.o<1) o=Math.min(1,t*6);               /* out of the laptop */
+        frames.push({transform:T(x,y,rot), opacity:o});
       }
-      d.style.width=d.style.height=cell+'px';
-      d.style.opacity=(first&&T<=0)?0:1;
-      d.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,0) rotate('+rot.toFixed(1)+'deg)';
+      var endRot=Math.round((s.r+q.spin+roll*90)/90)*90;
+      frames[n].transform=T(to.x,to.y,endRot);
+      var a=d.animate(frames,{duration:q.dur,delay:q.delay,easing:'linear',fill:'both'});
+      anims[i]=a;
+      a.onfinish=function(){
+        d.style.transform=frames[n].transform; d.style.opacity=frames[n].opacity; a.cancel();
+        if(++finished===N && cur===LAST) layer.classList.add('is-done');
+      };
     });
-    var nowDone=(k===STOPS.length-1&&T>=0.999);
-    if(nowDone!==done){ done=nowDone; layer.classList.toggle('is-done',done); }
   }
-  function queue(){ if(!queued){ queued=true; requestAnimationFrame(draw); } }
-  window.addEventListener('scroll',function(){ queue(); clearTimeout(settle); settle=setTimeout(queue,700); },{passive:true});
-  window.addEventListener('resize',queue);
-  if(calm.addEventListener) calm.addEventListener('change',queue);
-  window.addEventListener('load',queue); setTimeout(queue,900); queue();
+  function target(){
+    var y=window.scrollY, k=-1;
+    for(var j=0;j<thresholds.length;j++){ if(y>=thresholds[j]) k=j; }
+    if(k<cur && cur>=0 && y>=thresholds[cur]-40) k=cur;   /* small buffer so they don't bounce back and forth */
+    return k;
+  }
+  var ticking=false;
+  function onScroll(){ if(ticking) return; ticking=true; requestAnimationFrame(function(){ ticking=false; if(calm.matches) return; var k=target(); if(k!==cur) go(k); }); }
+  function reset(){ if(calm.matches){ layer.style.display='none'; return; } layer.style.display=''; measure(); cur=target(); place(cur); }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  /* phones resize the window when the address bar hides: only re-snap when the width really changes */
+  var rt, lastW=window.innerWidth; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(function(){ if(window.innerWidth!==lastW){ lastW=window.innerWidth; reset(); } else if(!calm.matches){ measure(); } },150); });
+  if(calm.addEventListener) calm.addEventListener('change',reset);
+  window.addEventListener('load',reset);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(reset);
+  reset();
 })();
 </script>
 
