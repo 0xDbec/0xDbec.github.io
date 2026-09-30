@@ -1877,7 +1877,7 @@ body::before { inset: 0; }
   var calm=window.matchMedia('(prefers-reduced-motion: reduce)');
   var COLS=27, LAPX=21, LAPY=14;   /* scene width in pixels, laptop screen position */
   /* where the pixels rest, top to bottom: [selector, where along the top edge (0 left, 1 right)] */
-  var STOPS=[['.marquee',0.8],['#what .cards',0.84],['.track-grid',0.72],['#active .engagement',0.88],['.since-frame',0.8],['.speaking-frame',0.64],['footer',0.7]]
+  var STOPS=[['.marquee',0.8],['#what .cards',0.84],['.track-grid',0.72],['#active .engagement',0.88],['#case-beamer',0.86],['.since-frame',0.8],['.speaking-frame',0.64],['footer',0.7]]
     .map(function(s){ return {el:document.querySelector(s[0]), f:s[1]}; }).filter(function(s){ return s.el; });
   var LAST=STOPS.length-1;
   var COLORS=['#5B6EFF','#F6CF5C','#4F46E5','#CBD5E1','#5B6EFF','#F4A7B9','#4F46E5'], N=COLORS.length;
