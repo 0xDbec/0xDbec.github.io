@@ -513,10 +513,11 @@ h2 .accent {
 .track-tile:nth-child(4n) { border-right: none; }
 .track-tile:nth-last-child(-n+4) { border-bottom: none; }
 @media (min-width: 901px) {
-  .track-tile.track-wide { grid-column: span 2; }
-  .track-tile:nth-last-child(-n+4) { border-bottom: 1px solid var(--glass-border); }
-  .track-tile:nth-last-child(-n+2) { border-bottom: none; }
-  .track-tile:last-child { border-right: none; }
+  /* one company per row: Zalando, then Beamer and Raiden, then LUKSO */
+  .track-tile.tr-2 { grid-column: span 2; }
+  .track-tile, .track-tile:nth-child(4n), .track-tile:nth-last-child(-n+4) { border-right: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+  .track-tile.tr-end { border-right: none; }
+  .track-tile.tr-last { border-bottom: none; }
 }
 
 .track-num {
@@ -1538,7 +1539,7 @@ body::before { animation: none; }
     <h2 id="track-h">Track record, <span class="accent">in numbers</span></h2>
     <div class="track-grid">
 
-      <article class="track-tile fade-up">
+      <article class="track-tile tr-2 fade-up">
         <p class="track-num">$50<em>K</em>&ndash;$1<em>M+</em></p>
         <p class="track-label">deal size range on enterprise brand accounts</p>
         <p class="track-source">Zalando</p>
@@ -1550,13 +1551,7 @@ body::before { animation: none; }
         <p class="track-source">Zalando</p>
       </article>
 
-      <article class="track-tile fade-up">
-        <p class="track-num">80<em>%+</em></p>
-        <p class="track-label">client retention across the account book</p>
-        <p class="track-source">Zalando</p>
-      </article>
-
-      <article class="track-tile fade-up">
+      <article class="track-tile tr-end fade-up">
         <p class="track-num">+20<em>%</em></p>
         <p class="track-label">year-over-year revenue growth</p>
         <p class="track-source">Zalando</p>
@@ -1574,25 +1569,19 @@ body::before { animation: none; }
         <p class="track-source">Beamer Bridge</p>
       </article>
 
-      <article class="track-tile fade-up">
-        <p class="track-num">73<em>K+</em></p>
-        <p class="track-label">community built from zero, roughly 5% MoM</p>
-        <p class="track-source">Beamer Bridge</p>
-      </article>
-
-      <article class="track-tile fade-up">
+      <article class="track-tile tr-2 tr-end fade-up">
         <p class="track-num">+30<em>%</em></p>
         <p class="track-label">developer community growth in one month</p>
         <p class="track-source">Raiden Network</p>
       </article>
 
-      <article class="track-tile track-wide fade-up">
+      <article class="track-tile tr-2 tr-last fade-up">
         <p class="track-num">60<em>%</em></p>
         <p class="track-label">fewer incoming support requests</p>
         <p class="track-source">LUKSO</p>
       </article>
 
-      <article class="track-tile track-wide fade-up">
+      <article class="track-tile tr-2 tr-end tr-last fade-up">
         <p class="track-num">150<em>%</em></p>
         <p class="track-label">community growth during the early L1 phase</p>
         <p class="track-source">LUKSO</p>
@@ -1905,7 +1894,7 @@ body::before { animation: none; }
     var p=[];
     for(var i=0;i<N;i++){
       p.push({slot:last?(i*1.6-(N-1)*0.8):slots[i], lvl:0, jit:(rnd(i,k,9)-0.5)*0.3,
-        delay:rnd(i,k,2)*260, dur:950+rnd(i,k,3)*450, fall:0.62+rnd(i,k,3)*0.12,
+        delay:rnd(i,k,2)*180, dur:680+rnd(i,k,3)*320, fall:0.62+rnd(i,k,3)*0.12,
         hop:k===0?5+rnd(i,k,4)*4:(rnd(i,k,4)<0.35?0.5:1+rnd(i,k,4)*3), sway:(rnd(i,k,5)-0.5)*5,
         spin:[0,0,90,-90,180,-180,270][Math.floor(rnd(i,k,6)*7)],
         roll:last?0:[0,0,1,-1,2,-2,3][Math.floor(rnd(i,k,7)*7)], bounce:0.3+rnd(i,k,8)*0.7});
