@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>0xDbec · Growth and BD for web3 protocols</title>
-<meta name="description" content="Growth and BD for web3 protocols. Leading growth for protocol teams since May 2024. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando.">
+<meta name="description" content="Growth and BD for web3 protocols, from pre-launch to scale. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://0xdbec.github.io/">
 <meta name="theme-color" content="#F4F7FF">
@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="0xDbec">
 <meta property="og:url" content="https://0xdbec.github.io/">
 <meta property="og:title" content="0xDbec · Growth and BD for web3 protocols">
-<meta property="og:description" content="Growth and BD for web3 protocols. Leading growth for protocol teams since May 2024. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando.">
+<meta property="og:description" content="Growth and BD for web3 protocols, from pre-launch to scale. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando.">
 <meta property="og:image" content="https://0xdbec.github.io/og-image.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -29,11 +29,11 @@
 <meta name="twitter:site" content="@0xDbec">
 <meta name="twitter:creator" content="@0xDbec">
 <meta name="twitter:title" content="0xDbec · Growth and BD for web3 protocols">
-<meta name="twitter:description" content="Growth and BD for web3 protocols. Leading growth for protocol teams since May 2024. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando.">
+<meta name="twitter:description" content="Growth and BD for web3 protocols, from pre-launch to scale. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando.">
 <meta name="twitter:image" content="https://0xdbec.github.io/og-image.jpg">
 <meta name="twitter:image:alt" content="Pixel-art character typing at a laptop with a cat asleep in its bed, beside the headline Growth and BD for web3 protocols.">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"0xDbec","url":"https://0xdbec.github.io/","description":"Growth and BD for web3 protocols. Leading growth for protocol teams since May 2024. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"0xDbec","url":"https://0xdbec.github.io/","description":"Growth and BD for web3 protocols, from pre-launch to scale. Previously brainbot (Raiden, Beamer Bridge), LUKSO and Zalando."}</script>
 
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -512,6 +512,12 @@ h2 .accent {
 /* Remove right border on rightmost column; bottom border on bottom row */
 .track-tile:nth-child(4n) { border-right: none; }
 .track-tile:nth-last-child(-n+4) { border-bottom: none; }
+@media (min-width: 901px) {
+  .track-tile.track-wide { grid-column: span 2; }
+  .track-tile:nth-last-child(-n+4) { border-bottom: 1px solid var(--glass-border); }
+  .track-tile:nth-last-child(-n+2) { border-bottom: none; }
+  .track-tile:last-child { border-right: none; }
+}
 
 .track-num {
   font-size: clamp(22px, 2.3vw, 32px);
@@ -1405,12 +1411,25 @@ body::before { animation: none; }
 .pixel-trail.is-done span::after { animation: pixelhop 0.6s ease-out both; animation-delay: inherit; }
 @keyframes pixelhop { 0% { transform: translateY(0); } 35% { transform: translateY(-140%); } 65% { transform: translateY(0); } 80% { transform: translateY(-35%); } 100% { transform: translateY(0); } }
 @media (max-width: 900px) {
-  .pixel-scene { position: relative; top: auto; right: auto; margin: 2rem 0 0 auto; width: 162px; height: 174px; }
+  /* first screen on tablet and phone: no empty band around the pixel scene */
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1.25rem; align-items: start; }
+  .hero > h1 { grid-column: 1; grid-row: 1; }
+  .hero > .subtitle { grid-column: 1; grid-row: 2; }
+  .hero > .hero-langs { grid-column: 1; grid-row: 3; }
+  .hero > .cta { grid-column: 1; grid-row: 4; }
+  .pixel-scene { grid-column: 2; grid-row: 1 / span 4; align-self: center; position: relative; top: auto; right: auto; margin: 0; width: 162px; height: 174px; }
   .pixel-avatar { width: 162px; }
 }
 @media (max-width: 600px) {
-  .pixel-scene { margin-top: 1.75rem; width: 135px; height: 145px; }
+  .hero > h1, .hero > .subtitle { grid-column: 1 / -1; }
+  .hero > .hero-langs { margin-bottom: 1.1rem; }
+  .hero > .cta { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .pixel-scene { grid-row: 3 / span 2; align-self: end; width: 135px; height: 145px; }
   .pixel-avatar { width: 135px; }
+}
+@media (max-width: 380px) {
+  .pixel-scene { width: 112px; height: 120px; }
+  .pixel-avatar { width: 112px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pixel-cat-body, .pixel-hand, .pixel-fx, .pixel-z { animation: none; }
@@ -1447,7 +1466,7 @@ body::before { animation: none; }
 
   <section class="hero fade-up">
     <h1>Growth and BD <span class="accent">for web3&nbsp;protocols.</span></h1>
-    <p class="subtitle">Leading growth for protocol teams since May 2024. Previously brainbot (Raiden Network, Beamer Bridge) and LUKSO. Started in enterprise sales at Zalando.</p>
+    <p class="subtitle">Leading growth from pre-launch to scale. Previously brainbot (Raiden Network, Beamer Bridge) and LUKSO. Started in enterprise sales at Zalando.</p>
     <div class="hero-langs"><span class="small-label">Languages</span><span class="langs">English, French, German</span></div>
     <div class="cta">
       <a class="btn primary" href="mailto:dinab.web3@gmail.com?subject=Inquiry%20via%200xdbec.github.io">Get in touch</a>
@@ -1502,14 +1521,14 @@ body::before { animation: none; }
 
       <article class="card fade-up">
         <span class="card-label">02 &middot;</span>
-        <h3>Partnerships and <em>Ecosystem</em></h3>
-        <p>Ecosystem partnerships with L2s and infrastructure protocols. Co-launches, joint X Spaces and events, run on a co-marketing framework. Ecosystem growth through targeted campaigns and onboarding programs. Representing clients at conferences and on panels.</p>
+        <h3>BD and <em>Sales</em></h3>
+        <p>Quota-carrying enterprise sales and account management at Zalando: a book of 25+ brand accounts, tailored proposals and C-level relationships. In web3: B2B pipeline building and outreach, demand validation at conferences, investor decks and traction narratives.</p>
       </article>
 
       <article class="card fade-up">
         <span class="card-label">03 &middot;</span>
-        <h3>BD and <em>Sales</em></h3>
-        <p>Quota-carrying enterprise sales and account management at Zalando: a book of 25+ brand accounts, tailored proposals and C-level relationships. In web3: B2B pipeline building and outreach, demand validation at conferences, investor decks and traction narratives.</p>
+        <h3>Partnerships and <em>Ecosystem</em></h3>
+        <p>Ecosystem partnerships with L2s and infrastructure protocols. Co-launches, joint X Spaces and events, run on a co-marketing framework. Ecosystem growth through targeted campaigns and onboarding programs. Representing clients at conferences and on panels.</p>
       </article>
 
     </div>
@@ -1518,30 +1537,6 @@ body::before { animation: none; }
   <section class="fade-up" id="track" aria-labelledby="track-h">
     <h2 id="track-h">Track record, <span class="accent">in numbers</span></h2>
     <div class="track-grid">
-
-      <article class="track-tile fade-up">
-        <p class="track-num">$1<em>M+</em></p>
-        <p class="track-label">bridged volume in the first 8 weeks after launch on L2s</p>
-        <p class="track-source">Beamer Bridge</p>
-      </article>
-
-      <article class="track-tile fade-up">
-        <p class="track-num">90<em>%+</em></p>
-        <p class="track-label">of tx volume attributable to marketing and partnerships</p>
-        <p class="track-source">Beamer Bridge</p>
-      </article>
-
-      <article class="track-tile fade-up">
-        <p class="track-num">11<em>K+</em></p>
-        <p class="track-label">unique wallet addresses activated</p>
-        <p class="track-source">Beamer Bridge</p>
-      </article>
-
-      <article class="track-tile fade-up">
-        <p class="track-num">60<em>%</em></p>
-        <p class="track-label">fewer incoming support requests</p>
-        <p class="track-source">LUKSO</p>
-      </article>
 
       <article class="track-tile fade-up">
         <p class="track-num">$50<em>K</em>&ndash;$1<em>M+</em></p>
@@ -1568,15 +1563,21 @@ body::before { animation: none; }
       </article>
 
       <article class="track-tile fade-up">
-        <p class="track-num">73<em>K+</em></p>
-        <p class="track-label">community built from zero, roughly 5% MoM</p>
+        <p class="track-num">$1<em>M+</em></p>
+        <p class="track-label">bridged volume in the first 8 weeks after launch on L2s</p>
         <p class="track-source">Beamer Bridge</p>
       </article>
 
       <article class="track-tile fade-up">
-        <p class="track-num">150<em>%</em></p>
-        <p class="track-label">community growth during the early L1 phase</p>
-        <p class="track-source">LUKSO</p>
+        <p class="track-num">11<em>K+</em></p>
+        <p class="track-label">unique wallet addresses activated</p>
+        <p class="track-source">Beamer Bridge</p>
+      </article>
+
+      <article class="track-tile fade-up">
+        <p class="track-num">73<em>K+</em></p>
+        <p class="track-label">community built from zero, roughly 5% MoM</p>
+        <p class="track-source">Beamer Bridge</p>
       </article>
 
       <article class="track-tile fade-up">
@@ -1585,10 +1586,16 @@ body::before { animation: none; }
         <p class="track-source">Raiden Network</p>
       </article>
 
-      <article class="track-tile fade-up">
-        <p class="track-num">1<em>K+</em></p>
-        <p class="track-label">avg live audience on partner X Spaces</p>
-        <p class="track-source">Beamer Bridge</p>
+      <article class="track-tile track-wide fade-up">
+        <p class="track-num">60<em>%</em></p>
+        <p class="track-label">fewer incoming support requests</p>
+        <p class="track-source">LUKSO</p>
+      </article>
+
+      <article class="track-tile track-wide fade-up">
+        <p class="track-num">150<em>%</em></p>
+        <p class="track-label">community growth during the early L1 phase</p>
+        <p class="track-source">LUKSO</p>
       </article>
 
     </div>
