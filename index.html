@@ -1290,6 +1290,11 @@ footer {
    the motion was barely visible but kept the whole screen repainting. */
 body *:not(.topbar) { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
 body::before { animation: none; }
+/* lighter scrolling on large and retina screens: fewer GPU layers, smaller blur */
+.js .fade-up { will-change: auto; }
+.fade-in { animation-fill-mode: backwards; }
+body::before { inset: 0; }
+.topbar { -webkit-backdrop-filter: blur(14px) saturate(150%); backdrop-filter: blur(14px) saturate(150%); }
 .is-off .pixel-hand, .is-off .pixel-fx, .is-off .pixel-z, .is-off .pixel-cat-body, .marquee.is-off .marquee-track { animation-play-state: paused; }
 
 /* ---------- 30-SECOND SCAN: languages, career path, case studies dropdown and boxes ---------- */
@@ -1603,9 +1608,9 @@ body::before { animation: none; }
         <span class="tag">Co-marketing</span>
       </div>
       <ul>
-        <li>GTM and marketing strategy, including social channels and beta-to-alpha launch sequencing</li>
+        <li>GTM strategy, including beta-to-alpha launch sequencing</li>
         <li>Owned a gamified pre-launch marketing product to acquire users, driving waitlist sign-ups and community growth</li>
-        <li>Paid media strategy and execution</li>
+        <li>Marketing strategy and execution, managing external agencies and freelancers</li>
         <li>Input on tokenomics and token utility design</li>
         <li>UX and UI input alongside the designer and product team</li>
         <li>Partnerships and marketing budget ownership</li>
