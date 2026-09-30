@@ -513,8 +513,11 @@ h2 .accent {
 .track-tile:nth-child(4n) { border-right: none; }
 .track-tile:nth-last-child(-n+4) { border-bottom: none; }
 @media (min-width: 901px) {
-  /* one company per row: Zalando, then Beamer and Raiden, then LUKSO */
+  /* one company per row: Zalando (3), Beamer and Raiden (3), LUKSO (2) */
+  .track-grid { grid-template-columns: repeat(6, 1fr); }
+  .track-tile { grid-column: span 2; }
   .track-tile.tr-2 { grid-column: span 2; }
+  .track-tile.tr-wide3 { grid-column: span 3; }
   .track-tile, .track-tile:nth-child(4n), .track-tile:nth-last-child(-n+4) { border-right: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
   .track-tile.tr-end { border-right: none; }
   .track-tile.tr-last { border-bottom: none; }
@@ -1292,9 +1295,11 @@ body *:not(.topbar) { -webkit-backdrop-filter: none !important; backdrop-filter:
 body::before { animation: none; }
 /* lighter scrolling on large and retina screens: fewer GPU layers, smaller blur */
 .js .fade-up { will-change: auto; }
+.js .fade-up { transform: translateY(14px); transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+.js .fade-up.in { transform: none; }
 .fade-in { animation-fill-mode: backwards; }
 body::before { inset: 0; }
-.topbar { -webkit-backdrop-filter: blur(14px) saturate(150%); backdrop-filter: blur(14px) saturate(150%); }
+.topbar { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(250,251,255,0.9); }
 .is-off .pixel-hand, .is-off .pixel-fx, .is-off .pixel-z, .is-off .pixel-cat-body, .marquee.is-off .marquee-track { animation-play-state: paused; }
 
 /* ---------- 30-SECOND SCAN: languages, career path, case studies dropdown and boxes ---------- */
@@ -1468,9 +1473,9 @@ body::before { inset: 0; }
   </div>
 </div>
 
-<div class="container fade-in" id="top">
+<div class="container" id="top">
 
-  <section class="hero fade-up">
+  <section class="hero">
     <h1>Growth and BD <span class="accent">for web3&nbsp;protocols.</span></h1>
     <p class="subtitle">Leading growth from pre-launch to scale. Previously brainbot (Raiden Network, Beamer Bridge) and LUKSO. Started in enterprise sales at Zalando.</p>
     <div class="hero-langs"><span class="small-label">Languages</span><span class="langs">English, French, German</span></div>
@@ -1483,7 +1488,7 @@ body::before { inset: 0; }
     </div>
   </section>
 
-  <section class="fade-up" aria-labelledby="worked-h">
+  <section aria-labelledby="worked-h">
     <span class="small-label" id="worked-h">worked with</span>
     <div class="marquee" tabindex="0">
       <div class="marquee-track">
@@ -1519,19 +1524,19 @@ body::before { inset: 0; }
     <h2 id="what-h">Three areas of <span class="accent">focus</span></h2>
     <div class="cards">
 
-      <article class="card fade-up">
+      <article class="card">
         <span class="card-label">01 &middot;</span>
         <h3>Full-Funnel Growth and <em>GTM</em></h3>
         <p>End-to-end growth, from strategy to execution: building and leading growth teams, owning the roadmap and running launch GTM (ICP, positioning, funnels). Product optimization on onboarding and activation, with feedback loops into engineering priorities.</p>
       </article>
 
-      <article class="card fade-up">
+      <article class="card">
         <span class="card-label">02 &middot;</span>
         <h3>BD and <em>Sales</em></h3>
         <p>Quota-carrying enterprise sales and account management at Zalando: a book of 25+ brand accounts, tailored proposals and C-level relationships. In web3: B2B pipeline building and outreach, demand validation at conferences, investor decks and traction narratives.</p>
       </article>
 
-      <article class="card fade-up">
+      <article class="card">
         <span class="card-label">03 &middot;</span>
         <h3>Partnerships and <em>Ecosystem</em></h3>
         <p>Ecosystem partnerships with L2s and infrastructure protocols. Co-launches, joint X Spaces and events, run on a co-marketing framework. Ecosystem growth through targeted campaigns and onboarding programs. Representing clients at conferences and on panels.</p>
@@ -1544,49 +1549,49 @@ body::before { inset: 0; }
     <h2 id="track-h">Track record, <span class="accent">in numbers</span></h2>
     <div class="track-grid">
 
-      <article class="track-tile tr-2 fade-up">
+      <article class="track-tile">
         <p class="track-num">$50<em>K</em>&ndash;$1<em>M+</em></p>
         <p class="track-label">deal size range on enterprise brand accounts</p>
         <p class="track-source">Zalando</p>
       </article>
 
-      <article class="track-tile fade-up">
+      <article class="track-tile">
         <p class="track-num">25<em>+</em></p>
         <p class="track-label">enterprise brand accounts, incl. Adidas, Nike and PVH</p>
         <p class="track-source">Zalando</p>
       </article>
 
-      <article class="track-tile tr-end fade-up">
+      <article class="track-tile tr-end">
         <p class="track-num">+20<em>%</em></p>
         <p class="track-label">year-over-year revenue growth</p>
         <p class="track-source">Zalando</p>
       </article>
 
-      <article class="track-tile fade-up">
+      <article class="track-tile">
         <p class="track-num">$1<em>M+</em></p>
         <p class="track-label">bridged volume in the first 8 weeks after launch on L2s</p>
         <p class="track-source">Beamer Bridge</p>
       </article>
 
-      <article class="track-tile fade-up">
+      <article class="track-tile">
         <p class="track-num">11<em>K+</em></p>
         <p class="track-label">unique wallet addresses activated</p>
         <p class="track-source">Beamer Bridge</p>
       </article>
 
-      <article class="track-tile tr-2 tr-end fade-up">
+      <article class="track-tile tr-end">
         <p class="track-num">+30<em>%</em></p>
         <p class="track-label">developer community growth in one month</p>
         <p class="track-source">Raiden Network</p>
       </article>
 
-      <article class="track-tile tr-2 tr-last fade-up">
+      <article class="track-tile tr-wide3 tr-last">
         <p class="track-num">60<em>%</em></p>
         <p class="track-label">fewer incoming support requests</p>
         <p class="track-source">LUKSO</p>
       </article>
 
-      <article class="track-tile tr-2 tr-end tr-last fade-up">
+      <article class="track-tile tr-wide3 tr-end tr-last">
         <p class="track-num">150<em>%</em></p>
         <p class="track-label">community growth during the early L1 phase</p>
         <p class="track-source">LUKSO</p>
@@ -1598,7 +1603,7 @@ body::before { inset: 0; }
   <section class="fade-up" id="active" aria-labelledby="active-h">
     <h2 id="active-h">Active <span class="accent">client</span></h2>
 
-    <article class="engagement fade-up">
+    <article class="engagement">
       <p class="engagement-name"><a href="https://www.liqd.com/" target="_blank" rel="noopener">LIQD</a></p>
       <p class="engagement-role">Growth lead, joined in stealth pre-launch as an early team member</p>
       <div class="engagement-tags">
@@ -1621,7 +1626,7 @@ body::before { inset: 0; }
   <section class="fade-up" id="work" aria-labelledby="work-h">
     <h2 id="work-h">Four case studies, <span class="accent">in more depth</span></h2>
 
-    <article class="cs fade-up" id="case-beamer">
+    <article class="cs" id="case-beamer">
       <details>
         <summary>
           <span class="cs-num">01</span>
@@ -1646,7 +1651,7 @@ body::before { inset: 0; }
       </div>
     </article>
 
-    <article class="cs fade-up" id="case-decentra">
+    <article class="cs" id="case-decentra">
       <details>
         <summary>
           <span class="cs-num">02</span>
@@ -1668,7 +1673,7 @@ body::before { inset: 0; }
       </div>
     </article>
 
-    <article class="cs fade-up" id="case-raiden">
+    <article class="cs" id="case-raiden">
       <details>
         <summary>
           <span class="cs-num">03</span>
@@ -1693,7 +1698,7 @@ body::before { inset: 0; }
       </div>
     </article>
 
-    <article class="cs fade-up" id="case-lukso">
+    <article class="cs" id="case-lukso">
       <details>
         <summary>
           <span class="cs-num">04</span>
@@ -1722,7 +1727,7 @@ body::before { inset: 0; }
 
     <div class="since-frame">
 
-      <details class="since-row fade-up">
+      <details class="since-row">
         <summary>
           <h3 class="since-name">Mined<em>.fi</em></h3>
           <span class="since-line"><strong>Interim CGO</strong> <span>growth strategy for liquid mining on Alephium</span></span>
@@ -1736,7 +1741,7 @@ body::before { inset: 0; }
         </div>
       </details>
 
-      <details class="since-row fade-up">
+      <details class="since-row">
         <summary>
           <h3 class="since-name">Shutter <em>Network</em></h3>
           <span class="since-line"><strong>DAO bootstrapping</strong> <span>partnerships and a points-based onboarding program</span></span>
@@ -1750,7 +1755,7 @@ body::before { inset: 0; }
         </div>
       </details>
 
-      <details class="since-row fade-up">
+      <details class="since-row">
         <summary>
           <h3 class="since-name">Quant<em>Pilot</em></h3>
           <span class="since-line"><strong>Positioning and branding</strong> <span>plus tokenomics input at PoC stage</span></span>
@@ -1764,7 +1769,7 @@ body::before { inset: 0; }
         </div>
       </details>
 
-      <details class="since-row fade-up">
+      <details class="since-row">
         <summary>
           <h3 class="since-name">Cometh, Trustblock, <em>Gaia</em></h3>
           <span class="since-line"><strong>Shorter engagements</strong> <span>GTM, partnerships and conference outreach</span></span>
@@ -1784,47 +1789,47 @@ body::before { inset: 0; }
     <h2 id="speaking-h">Speaking and <span class="accent">volunteering</span></h2>
     <div class="speaking-frame">
 
-      <article class="speaking-row fade-up">
+      <article class="speaking-row">
         <span class="speaking-date">2024</span>
         <p class="speaking-detail">Funding the Commons panel <em>representing Mined.fi</em></p>
       </article>
 
-      <article class="speaking-row fade-up">
+      <article class="speaking-row">
         <span class="speaking-date">2023</span>
         <p class="speaking-detail">ETHBarcelona panel on Account Abstraction <em>speaker</em></p>
       </article>
 
-      <article class="speaking-row fade-up">
+      <article class="speaking-row">
         <span class="speaking-date">2022</span>
         <p class="speaking-detail">Content Convention <em>speaker</em></p>
       </article>
 
-      <article class="speaking-row fade-up">
+      <article class="speaking-row">
         <span class="speaking-date">2024/25</span>
         <p class="speaking-detail">MrsBeauty AI <em>co-founder, DeFAI experiment with Nostra Labs</em></p>
       </article>
 
-      <article class="speaking-row fade-up">
+      <article class="speaking-row">
         <span class="speaking-date">Various</span>
         <p class="speaking-detail">X Spaces with LI.FI, Beamer, Arbitrum <em>guest speaker and moderator</em></p>
       </article>
 
-      <article class="speaking-row fade-up">
+      <article class="speaking-row">
         <span class="speaking-date">Ongoing</span>
         <p class="speaking-detail">Bundesblock public speaker list <em>listed speaker</em></p>
       </article>
 
-      <article class="speaking-row fade-up">
+      <article class="speaking-row">
         <span class="speaking-date">2023</span>
         <p class="speaking-detail">ETHWarsaw with Fluffe: Chronicles of Cuteness <em>1st place, Best NFT Project</em></p>
       </article>
 
-      <article class="speaking-row fade-up">
+      <article class="speaking-row">
         <span class="speaking-date">2024</span>
         <p class="speaking-detail">CareerFoundry <em>certified Product Manager</em></p>
       </article>
 
-      <article class="speaking-row fade-up">
+      <article class="speaking-row">
         <span class="speaking-date">2025/26</span>
         <p class="speaking-detail">Protocol Berg v2 and EthCC <em>volunteer</em></p>
       </article>
